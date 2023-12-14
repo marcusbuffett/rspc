@@ -37,12 +37,12 @@ export interface SubscriptionOptions<TOutput> {
   onError?: (err: RSPCError) => void;
 }
 
-interface Context<TProcedures extends ProceduresDef> {
+export interface Context<TProcedures extends ProceduresDef> {
   client: Client<TProcedures>;
   queryClient: QueryClient;
 }
 
-type KeyAndInput = [string] | [string, any];
+export type KeyAndInput = [string] | [string, any];
 
 export type HooksOpts<P extends ProceduresDef> = {
   context: Solid.Context<Context<P>>;
