@@ -113,37 +113,37 @@ export function createReactQueryHooks<P extends ProceduresDef>(
     });
   }
 
-  function useInfiniteQuery<K extends inferInfiniteQueries<P>["key"] & string>(
-    keyAndInput: [
-      key: K,
-      ...input: _inferInfiniteQueryProcedureHandlerInput<P, K>
-    ],
-    opts?: Omit<
-      UseInfiniteQueryOptions<
-        inferInfiniteQueryResult<P, K>,
-        AlphaRSPCError,
-        inferInfiniteQueryResult<P, K>,
-        inferInfiniteQueryResult<P, K>,
-        [K, inferQueryInput<P, K>]
-      >,
-      "queryKey" | "queryFn"
-    > &
-      TBaseOptions
-  ): UseInfiniteQueryResult<inferInfiniteQueryResult<P, K>, AlphaRSPCError> {
-    const { rspc, ...rawOpts } = opts ?? {};
-    let client = rspc?.client;
-    if (!client) {
-      client = useContext().client;
-    }
+  // function useInfiniteQuery<K extends inferInfiniteQueries<P>["key"] & string>(
+  //   keyAndInput: [
+  //     key: K,
+  //     ...input: _inferInfiniteQueryProcedureHandlerInput<P, K>
+  //   ],
+  //   opts?: Omit<
+  //     UseInfiniteQueryOptions<
+  //       inferInfiniteQueryResult<P, K>,
+  //       AlphaRSPCError,
+  //       inferInfiniteQueryResult<P, K>,
+  //       inferInfiniteQueryResult<P, K>,
+  //       [K, inferQueryInput<P, K>]
+  //     >,
+  //     "queryKey" | "queryFn"
+  //   > &
+  //     TBaseOptions
+  // ): UseInfiniteQueryResult<inferInfiniteQueryResult<P, K>, AlphaRSPCError> {
+  //   const { rspc, ...rawOpts } = opts ?? {};
+  //   let client = rspc?.client;
+  //   if (!client) {
+  //     client = useContext().client;
+  //   }
 
-    return __useInfiniteQuery({
-      queryKey: mapQueryKey(keyAndInput as any),
-      queryFn: async () => {
-        throw new Error("TODO"); // TODO: Finish this
-      },
-      ...(rawOpts as any),
-    });
-  }
+  //   return __useInfiniteQuery({
+  //     queryKey: mapQueryKey(keyAndInput as any),
+  //     queryFn: async () => {
+  //       throw new Error("TODO"); // TODO: Finish this
+  //     },
+  //     ...(rawOpts as any),
+  //   });
+  // }
 
   function useMutation<
     K extends P["mutations"]["key"] & string,
