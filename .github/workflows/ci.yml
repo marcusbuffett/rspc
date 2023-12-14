@@ -98,16 +98,16 @@ jobs:
               run: pnpm build
 
             - name: Configure main version
-              if: github.ref == 'refs/heads/main'
+              if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
               run: pnpm set-package-versions
               env:
                   RELEASE_COMMIT_SHA: ${{ github.sha }}
 
             - name: Publish main to npm
-              if: github.ref == 'refs/heads/main'
+              if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
               run: pnpm publish -r ${TAG} --no-git-checks --filter "@rspc/*" --access public
               env:
-                  TAG: ${{ (github.ref == 'refs/heads/main' && '--tag=main') || '' }}
+                  TAG: ${{ (github.ref == 'refs/heads/main' && '--tag=main') || (github.event_name == 'workflow_dispatch' && '--tag=workflow') || '' }}
 
             # - name: Configure release version
             #   if: github.ref_type == 'tag'
