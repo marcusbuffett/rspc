@@ -94,7 +94,7 @@ export function createReactQueryHooks<P extends ProceduresDef>(
     }
 
     return __createQuery({
-      queryKey: mapQueryKey(keyAndInput as any) as any,
+      queryKey: () => mapQueryKey(keyAndInput() as any) as any,
       queryFn: async () => client!.query(keyAndInput()),
       ...(rawOpts as any),
     });
