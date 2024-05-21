@@ -23,7 +23,7 @@ typescript = []
 # Public
 serde = { version = "1", festures = ["derive"] }
 futures = "0.3"
-specta = {git = "git@github.com:marcusbuffett/specta.git", branch = "main"}
+specta = {git = "https://github.com/marcusbuffett/specta", branch = "main"}
 # specta2 = { package = "specta", version = "=2.0.0-rc.8", features = ["typescript"] }
 
 # Private
